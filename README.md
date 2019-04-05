@@ -7,26 +7,26 @@ This is a Terraform module that demonstrates how to use Terraform to create:
 It builds upon [the great work](https://github.com/terraform-community-modules/tf_aws_redshift) of [Quentin Rousseau](https://github.com/kwent).
 
 ## Usage
-In your own Terraform project, use the syntax below to:
-1. Set the values statically
-OR
-2. Set up variables in your own `terraform.tfvars` file (as shown below)
+Use the module in your Terraform project (something like your `main.tf`) using the sample code below:
 ```
 module "redshift_with_s3" {
   source = "github.com/aimtheory/aws_redshift_with_s3"
 
-  redshift_cluster_identifier = "${var.redshift_cluster_identifier}"
-  redshift_cluster_node_type = "${var.redshift_cluster_node_type}"
-  redshift_cluster_number_of_nodes = "${var.redshift_cluster_number_of_nodes}"
-  redshift_cluster_database_name = "${var.redshift_cluster_database_name}"
-  redshift_cluster_master_username = "${var.redshift_cluster_master_username}"
-  redshift_cluster_master_password = "${var.redshift_cluster_master_password}"
-  redshift_cluster_wlm_json_configuration = "${var.redshift_cluster_wlm_json_configuration}"
-  public_subnets = "${var.public_subnets}"
-  vpc_id = "${var.vpc_id}"
-  vpc_cidr = "${var.vpc_cidr}"
-  redshift_role_arn = "${var.redshift_role_arn}"
-  redshift_bucket_name = "${var.redshift_bucket_name}"
+  redshift_cluster_identifier = "your_redshift_cluster_identifier_here"
+  redshift_cluster_node_type = "your_redshift_cluster_node_type_here"
+  redshift_cluster_number_of_nodes = "your_redshift_cluster_number_of_nodes_here"
+  redshift_cluster_database_name = "your_redshift_cluster_database_name_here"
+  redshift_cluster_master_username = "your_redshift_cluster_master_username_here"
+  redshift_cluster_master_password = "your_redshift_cluster_master_password_here"
+  public_subnets = "a_list_of_your_subnet_ids_here"
+  vpc_id = "your_vpc_id_here"
+  vpc_cidr = "your_vpc_cidr_here"
+  redshift_bucket_name = "your_redshift_bucket_name_here"
 }
 ```
 Then go through the normal Terraform workflow to create a plan and apply it.
+```
+terraform init
+terraform plan -out plan.out
+terraform apply plan.out
+```
